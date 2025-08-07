@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Layout</title>
+  <!-- FavIcon  -->
+  <link rel="icon" type="icon/x-icon" href="./Images/favicon-32x32.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Configure Tailwind for class-based dark mode
+    tailwind.config = {
+      darkMode: 'class',
+    }
+
+    // Function to toggle dark mode
+    function toggleDarkMode() {
+      document.documentElement.classList.toggle('dark');
+      // Optional: Store preference in localStorage to persist across sessions
+      if (document.documentElement.classList.contains('dark')) {
+        localStorage.setItem('theme', 'dark');
+      } else {
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    // Apply saved theme on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('theme') === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    });
+  </script>
+  <style>
+    * {
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-[#e6edf9] py-9 dark:bg-[#0f111a] ">
+  <div class="w-full lg:w-[1024px] mx-auto px-5 md:px-5">
+
+    <!-- NAV-BAR -->
+    <!--     FLUX     -->
+    <!-- Extensions-->
+    <div class="flex rounded-2xl justify-between items-center shadow p-2 bg-white dark:bg-[#2f364bff]">
+      <div class="flex justify-between items-center gap-1">
+        <img src="./Images/logo.svg" alt="Nav_bar_logo" class="w-8">
+        <div class="dark:text-white font-bold">Extensions</div>
+      </div>
+      <div>
+        <button onclick="toggleDarkMode()" id="DarkMode" type="button"
+          class=" bg-[#ededed] border border-gray-300 shadow rounded-lg px-1 py-1 dark:bg-transparent dark:border-gray-700">
+          <img class="w-5 h-4 dark:block hidden" src="./Images/icon-sun.svg" alt="Night-butn">
+          <img class="w-5 h-4 block dark:hidden" src="./Images/icon-moon.svg" alt="day-butn">
+        </button>
+      </div>
+    </div>
+    <!-- Extensions Lists -->
+    <div class="flex flex-wrap gap-4  rounded-2xl justify-center items-center md:justify-between  py-5 m-3  ">
+      <div class="font-bold text-2xl dark:text-white">Extensions List</div>
+
+      <div>
+        <button id="All" type="button"
+          class="border border-gray-300 rounded-[18px]  px-3 py-1 bg-red-600 shadow text-[14px] font-base text-white dark:border-none ">
+          All </button>
+        <button id="Active" type="button"
+          class="border border-gray-300 rounded-[18px]  px-3 py-1 bg-white shadow text-[14px] font-base dark:bg-[#2f364bff] dark:border-gray-600 dark:text-white">
+          Active
+        </button>
+        <button id="Inactive" type="button"
+          class="border border-gray-300 rounded-[18px]  px-3 py-1 bg-white shadow text-[14px] font-base dark:bg-[#2f364bff] dark:border-gray-600 dark:text-white">
+          Inactive
+        </button>
+      </div>
+    </div>
+
+    <!-- CARDS -->
+    <div class="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+      <!-- DevLens -->
+      <div
+        class="bg-white border border-gray-300 rounded-2xl shadow relative p-3 dark:bg-[#2f364bff] dark:border-gray-500 ">
+        <div class="flex justify-between gap-2 mb-12 ">
+          <!-- IMG -->
+          <div class="w-[64px] h-[64px]">
+            <img class="rounded-t-lg" src="./Images/logo-devlens.svg" alt="DEV-LENS-Logo" />
+          </div>
+          <div>
+            <!-- CONTENT -->
+            <h2 class="text-base font-bold tracking-tight text-gray-900 dark:text-white">DevLens</h2>
+            <p class="tex-[12px] font-normal text-gray-700 dark:text-white">
+              Quickly inspect page layouts and visualize element boundaries.
+            </p>
+          </div>
+        </div>
+        <!--      Buttons & FLEX-->
+        <div class="flex justify-between items-center bottom-[8px] absolute left-0 w-full p-3 pb-0">
+          <button id="Remove" type="button"
+            class="border border-gray-300 rounded-[18px]  px-3 py-1 bg-white shadow text-[14px] font-base dark:bg-transparent dark:border-gray-600 dark:text-white">
+            Remove
+          </button> <!--   ToggleSwitch     -->
+          <label class="relative w-10 cursor-pointer">
+            <input type="checkbox" class="sr-only peer" id="toggleSwitch" />
+            <div class="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-red-500 transition-colors dark:bg-gray-600">
+            </div>
+            <div
+              class="absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-transform peer-checked:translate-x-5">
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- StyleSpy -->
+      <div
+        class="bg-white border border-gray-300 rounded-2xl shadow relative p-3 dark:bg-[#2f364bff] dark:border-gray-500 ">
+        <div class="flex justify-between gap-2 mb-12">
+          <!-- IMG -->
+          <div class="w-[64px] h-[64px]">
+            <img class="rounded-t-lg" src="./Images/logo-style-spy.svg" alt="StyleSpy-Logo" />
+          </div>
+          <div>
+            <!-- CONTENT -->
+            <h2 class="text-base font-bold tracking-tight text-gray-900 dark:text-white">StyleSpy</h2>
+            <p class="tex-[12px] font-normal text-gray-700 dark:text-white">
+              Instantly analyze and copy CSS from any webpage element.
+            </p>
+          </div>
+        </div>
+        <!--      Buttons & FLEX-->
+        <div class="flex justify-between items-center bottom-[8px] absolute left-0 w-full p-3 pb-0">
+          <button id="Remove" type="button"
+            class="border border-gray-300 rounded-[18px]  px-3 py-1 bg-white shadow text-[14px] font-base dark:bg-transparent dark:border-gray-600 dark:text-white">
+            Remove
+          </button> <!--   ToggleSwitch     -->
+          <label class="relative w-10 cursor-pointer">
+            <input type="checkbox" class="sr-only peer" id="toggleSwitch" />
+            <div class="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-red-500 transition-colors dark:bg-gray-600">
+            </div>
+            <div
+              class="absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-transform peer-checked:translate-x-5">
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- SpeedBoost -->
+      <div
+        class="bg-white border border-gray-300 rounded-2xl shadow relative p-3 dark:bg-[#2f364bff] dark:border-gray-500 ">
+        <div class="flex justify-between gap-2 mb-12">
+          <!-- IMG -->
+          <div class="w-[64px] h-[64px]">
+            <img class="rounded-t-lg" src="./Images/logo-speed-boost.svg" alt="SpeedBoost-Logo" />
+          </div>
+          <div>
+            <!-- CONTENT -->
+            <h2 class="text-base font-bold tracking-tight text-gray-900 dark:text-white">SpeedBoost</h2>
+            <p class="tex-[12px] font-normal text-gray-700 dark:text-white">
+              Optimizes browser resource usage to accelerate page loading.
+            </p>
+          </div>
+        </div>
+        <!--      Buttons & FLEX-->
+        <div class="flex justify-between items-center bottom-[8px] absolute left-0 w-full p-3 pb-0">
+          <button id="Remove" type="button"
+            class="border border-gray-300 rounded-[18px]  px-3 py-1 bg-white shadow text-[14px] font-base dark:bg-transparent dark:border-gray-600 dark:text-white">
+            Remove
+          </button> <!--   ToggleSwitch     -->
+          <label class="relative w-10 cursor-pointer">
+            <input type="checkbox" class="sr-only peer" id="toggleSwitch" />
+            <div class="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-red-500 transition-colors dark:bg-gray-600">
+            </div>
+            <div
+              class="absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-transform peer-checked:translate-x-5">
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- JSONWizard -->
+      <div
+        class="bg-white border border-gray-300 rounded-2xl shadow relative p-3 dark:bg-[#2f364bff] dark:border-gray-500 ">
+        <div class="flex justify-between gap-2 mb-12">
+          <!-- IMG -->
+          <div class="w-[64px] h-[64px]">
+            <img class="rounded-t-lg" src="./Images/logo-json-wizard.svg" alt="JSONWizard-Logo" />
+          </div>
+          <div>
+            <!-- CONTENT -->
+            <h2 class="text-base font-bold tracking-tight text-gray-900 dark:text-white">JSONWizard</h2>
+            <p class="tex-[12px] font-normal text-gray-700 dark:text-white">
+              Formats, validates, and prettifies JSON responses in-browser.
+            </p>
+          </div>
+        </div>
+        <!--      Buttons & FLEX-->
+        <div class="flex justify-between items-center bottom-[8px] absolute left-0 w-full p-3 pb-0">
+          <button id="Remove" type="button"
+            class="border border-gray-300 rounded-[18px]  px-3 py-1 bg-white shadow text-[14px] font-base dark:bg-transparent dark:border-gray-600 dark:text-white">
+            Remove
+          </button> <!--   ToggleSwitch     -->
+          <label class="relative w-10 cursor-pointer">
+            <input type="checkbox" class="sr-only peer" id="toggleSwitch" />
+            <div class="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-red-500 transition-colors dark:bg-gray-600">
+            </div>
+            <div
+              class="absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-transform peer-checked:translate-x-5">
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- TabMaster Pro -->
+      <div
+        class="bg-white border border-gray-300 rounded-2xl shadow relative p-3 dark:bg-[#2f364bff] dark:border-gray-500 ">
+        <div class="flex justify-between gap-2 mb-12">
+          <!-- IMG -->
+          <div class="w-[64px] h-[64px]">
+            <img class="rounded-t-lg" src="./Images/logo-style-spy.svg" alt="TabMaster Pro-Logo" />
+          </div>
+          <div>
+            <!-- CONTENT -->
+            <h2 class="text-base font-bold tracking-tight text-gray-900 dark:text-white">TabMaster Pro</h2>
+            <p class="tex-[12px] font-normal text-gray-700 dark:text-white">
+              Organizes browser tabs into groups and sessions..
+            </p>
+          </div>
+        </div>
+        <!--      Buttons & FLEX-->
+        <div class="flex justify-between items-center bottom-[8px] absolute left-0 w-full p-3 pb-0">
+          <button id="Remove" type="button"
+            class="border border-gray-300 rounded-[18px]  px-3 py-1 bg-white shadow text-[14px] font-base dark:bg-transparent dark:border-gray-600 dark:text-white">
+            Remove
+          </button> <!--   ToggleSwitch     -->
+          <label class="relative w-10 cursor-pointer">
+            <input type="checkbox" class="sr-only peer" id="toggleSwitch" />
+            <div class="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-red-500 transition-colors dark:bg-gray-600">
+            </div>
+            <div
+              class="absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-transform peer-checked:translate-x-5">
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- ViewportBuddy -->
+      <div
+        class="bg-white border border-gray-300 rounded-2xl shadow relative p-3 dark:bg-[#2f364bff] dark:border-gray-500 ">
+        <div class="flex justify-between gap-2 mb-12">
+          <!-- IMG -->
+          <div class="w-[64px] h-[64px]">
+            <img class="rounded-t-lg" src="./Images/logo-style-spy.svg" alt="ViewportBuddy-Logo" />
+          </div>
+          <div>
+            <!-- CONTENT -->
+            <h2 class="text-base font-bold tracking-tight text-gray-900 dark:text-white">ViewportBuddy</h2>
+            <p class="tex-[12px] font-normal text-gray-700 dark:text-white">
+              Simulates various screen resolutions directly within the browser.
+            </p>
+          </div>
+        </div>
+        <!--      Buttons & FLEX-->
+        <div class="flex justify-between items-center bottom-[8px] absolute left-0 w-full p-3 pb-0">
+          <button id="Remove" type="button"
+            class="border border-gray-300 rounded-[18px]  px-3 py-1 bg-white shadow text-[14px] font-base dark:bg-transparent dark:border-gray-600 dark:text-white">
+            Remove
+          </button> <!--   ToggleSwitch     -->
+          <label class="relative w-10 cursor-pointer">
+            <input type="checkbox" class="sr-only peer" id="toggleSwitch" />
+            <div class="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-red-500 transition-colors dark:bg-gray-600">
+            </div>
+            <div
+              class="absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-transform peer-checked:translate-x-5">
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Markup Notes -->
+      <div
+        class="bg-white border border-gray-300 rounded-2xl shadow relative p-3 dark:bg-[#2f364bff] dark:border-gray-500 ">
+        <div class="flex justify-between gap-2 mb-12">
+          <!-- IMG -->
+          <div class="w-[64px] h-[64px]">
+            <img class="rounded-t-lg" src="./Images/logo-markup-notes.svg" alt="MarkupNotes-Logo" />
+          </div>
+          <div>
+            <!-- CONTENT -->
+            <h2 class="text-base font-bold tracking-tight text-gray-900 dark:text-white">StyleSpy</h2>
+            <p class="tex-[12px] font-normal text-gray-700 dark:text-white">
+              Enables annotation and notes directly onto webpages for collaborative debugging.
+            </p>
+          </div>
+        </div>
+        <!--      Buttons & FLEX-->
+        <div class="flex justify-between items-center bottom-[8px] absolute left-0 w-full p-3 pb-0">
+          <button id="Remove" type="button"
+            class="border border-gray-300 rounded-[18px]  px-3 py-1 bg-white shadow text-[14px] font-base dark:bg-transparent dark:border-gray-600 dark:text-white">
+            Remove
+          </button> <!--   ToggleSwitch     -->
+          <label class="relative w-10 cursor-pointer">
+            <input type="checkbox" class="sr-only peer" id="toggleSwitch" />
+            <div class="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-red-500 transition-colors dark:bg-gray-600">
+            </div>
+            <div
+              class="absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-transform peer-checked:translate-x-5">
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- GridGuides -->
+      <div
+        class="bg-white border border-gray-300 rounded-2xl shadow relative p-3 dark:bg-[#2f364bff] dark:border-gray-500 ">
+        <div class="flex justify-between gap-2 mb-12">
+          <!-- IMG -->
+          <div class="w-[64px] h-[64px]">
+            <img class="rounded-t-lg" src="./Images/logo-grid-guides.svg" alt="GridGuides-Logo" />
+          </div>
+          <div>
+            <!-- CONTENT -->
+            <h2 class="text-base font-bold tracking-tight text-gray-900 dark:text-white">GridGuides</h2>
+            <p class="tex-[12px] font-normal text-gray-700 dark:text-white">
+              Overlay customizable grids and alignment guides on any webpage.
+            </p>
+          </div>
+        </div>
+        <!--      Buttons & FLEX-->
+        <div class="flex justify-between items-center bottom-[8px] absolute left-0 w-full p-3 pb-0">
+          <button id="Remove" type="button"
+            class="border border-gray-300 rounded-[18px]  px-3 py-1 bg-white shadow text-[14px] font-base dark:bg-transparent dark:border-gray-600 dark:text-white">
+            Remove
+          </button> <!--   ToggleSwitch     -->
+          <label class="relative w-10 cursor-pointer">
+            <input type="checkbox" class="sr-only peer" id="toggleSwitch" />
+            <div class="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-red-500 transition-colors dark:bg-gray-600">
+            </div>
+            <div
+              class="absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-transform peer-checked:translate-x-5">
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Palette Picker -->
+      <div
+        class="bg-white border border-gray-300 rounded-2xl shadow relative p-3 dark:bg-[#2f364bff] dark:border-gray-500 ">
+        <div class="flex justify-between gap-2 mb-12">
+          <!-- IMG -->
+          <div class="w-[64px] h-[64px]">
+            <img class="rounded-t-lg" src="./Images/logo-palette-picker.svg" alt="Palette Picker-Logo" />
+          </div>
+          <div>
+            <!-- CONTENT -->
+            <h2 class="text-base font-bold tracking-tight text-gray-900 dark:text-white">Palette Picker</h2>
+            <p class="tex-[12px] font-normal text-gray-700 dark:text-white">
+              Instantly extracts color palettes from any webpage.
+            </p>
+          </div>
+        </div>
+        <!--      Buttons & FLEX-->
+        <div class="flex justify-between items-center bottom-[8px] absolute left-0 w-full p-3 pb-0">
+          <button id="Remove" type="button"
+            class="border border-gray-300 rounded-[18px]  px-3 py-1 bg-white shadow text-[14px] font-base dark:bg-transparent dark:border-gray-600 dark:text-white">
+            Remove
+          </button> <!--   ToggleSwitch     -->
+          <label class="relative w-10 cursor-pointer">
+            <input type="checkbox" class="sr-only peer" id="toggleSwitch" />
+            <div class="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-red-500 transition-colors dark:bg-gray-600">
+            </div>
+            <div
+              class="absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-transform peer-checked:translate-x-5">
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Link Checker-->
+      <div
+        class="bg-white border border-gray-300 rounded-2xl shadow relative p-3 dark:bg-[#2f364bff] dark:border-gray-500 ">
+        <div class="flex justify-between gap-2 mb-12">
+          <!-- IMG -->
+          <div class="w-[64px] h-[64px]">
+            <img class="rounded-t-lg" src="./Images/logo-link-checker.svg" alt="LinkChecker-Logo" />
+          </div>
+          <div>
+            <!-- CONTENT -->
+            <h2 class="text-base font-bold tracking-tight text-gray-900 dark:text-white">LinkChecker</h2>
+            <p class="tex-[12px] font-normal text-gray-700 dark:text-white">
+              Scans and highlights broken links on any page.
+            </p>
+          </div>
+        </div>
+        <!--      Buttons & FLEX-->
+        <div class="flex justify-between items-center bottom-[8px] absolute left-0 w-full p-3 pb-0">
+          <button id="Remove" type="button"
+            class="border border-gray-300 rounded-[18px]  px-3 py-1 bg-white shadow text-[14px] font-base dark:bg-transparent dark:border-gray-600 dark:text-white">
+            Remove
+          </button> <!--   ToggleSwitch     -->
+          <label class="relative w-10 cursor-pointer">
+            <input type="checkbox" class="sr-only peer" id="toggleSwitch" />
+            <div class="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-red-500 transition-colors dark:bg-gray-600">
+            </div>
+            <div
+              class="absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-transform peer-checked:translate-x-5">
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- DOM Snapshot -->
+      <div
+        class="bg-white border border-gray-300 rounded-2xl shadow relative p-3 dark:bg-[#2f364bff] dark:border-gray-500 ">
+        <div class="flex justify-between gap-2 mb-12">
+          <!-- IMG -->
+          <div class="w-[64px] h-[64px]">
+            <img class="rounded-t-lg" src="./Images/logo-dom-snapshot.svg" alt="DOM Snapshot-Logo" />
+          </div>
+          <div>
+            <!-- CONTENT -->
+            <h2 class="text-base font-bold tracking-tight text-gray-900 dark:text-white">DOM Snapshot</h2>
+            <p class="tex-[12px] font-normal text-gray-700 dark:text-white">
+              Capture and export DOM structures quickly.
+            </p>
+          </div>
+        </div>
+        <!--      Buttons & FLEX-->
+        <div class="flex justify-between items-center bottom-[8px] absolute left-0 w-full p-3 pb-0">
+          <button id="Remove" type="button"
+            class="border border-gray-300 rounded-[18px]  px-3 py-1 bg-white shadow text-[14px] font-base dark:bg-transparent dark:border-gray-600 dark:text-white">
+            Remove
+          </button> <!--   ToggleSwitch     -->
+          <label class="relative w-10 cursor-pointer">
+            <input type="checkbox" class="sr-only peer" id="toggleSwitch" />
+            <div class="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-red-500 transition-colors dark:bg-gray-600">
+            </div>
+            <div
+              class="absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-transform peer-checked:translate-x-5">
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- ConsolePlus -->
+      <div
+        class="bg-white border border-gray-300 rounded-2xl shadow relative p-3 dark:bg-[#2f364bff] dark:border-gray-500 ">
+        <div class="flex justify-between gap-2 mb-12">
+          <!-- IMG -->
+          <div class="w-[64px] h-[64px]">
+            <img class="rounded-t-lg" src="./Images/logo-console-plus.svg" alt="ConsolePlus-Logo" />
+          </div>
+          <div>
+            <!-- CONTENT -->
+            <h2 class="text-base font-bold tracking-tight text-gray-900 dark:text-white">ConsolePlus</h2>
+            <p class="tex-[12px] font-normal text-gray-700 dark:text-white">
+              Enhanced developer console with advanced filtering and logging.
+            </p>
+          </div>
+        </div>
+        <!--      Buttons & FLEX-->
+        <div class="flex justify-between items-center bottom-[8px] absolute left-0 w-full p-3 pb-0">
+          <button id="Remove" type="button"
+            class="border border-gray-300 rounded-[18px]  px-3 py-1 bg-white shadow text-[14px] font-base dark:bg-transparent dark:border-gray-600 dark:text-white">
+            Remove
+          </button> <!--   ToggleSwitch     -->
+          <label class="relative w-10 cursor-pointer">
+            <input type="checkbox" class="sr-only peer" id="toggleSwitch" />
+            <div class="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-red-500 transition-colors dark:bg-gray-600">
+            </div>
+            <div
+              class="absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-transform peer-checked:translate-x-5">
+            </div>
+          </label>
+        </div>
+      </div>
+
+    </div>
+</body>
+
+</html>
