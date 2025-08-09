@@ -477,6 +477,38 @@
       </div>
 
     </div>
+     <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const allBtn = document.getElementById("All");
+  const activeBtn = document.getElementById("Active");
+  const inactiveBtn = document.getElementById("Inactive");
+  const switches = document.querySelectorAll("input[type='checkbox']");
+  const cards = document.querySelectorAll(".bg-white, .dark\\:bg\\[\\#2f364bff\\]");
+
+  switches.forEach((sw, i) => {
+    const card = sw.closest("div.bg-white, div.dark\\:bg\\[\\#2f364bff\\]");
+    card.dataset.status = sw.checked ? "active" : "inactive";
+
+    sw.addEventListener("change", () => {
+      card.dataset.status = sw.checked ? "active" : "inactive";
+    });
+  });
+
+  function filterCards(status) {
+    cards.forEach(card => {
+      if (status === "all" || card.dataset.status === status) {
+        card.style.display = "";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
+
+  allBtn.addEventListener("click", () => filterCards("all"));
+  activeBtn.addEventListener("click", () => filterCards("active"));
+  inactiveBtn.addEventListener("click", () => filterCards("inactive"));
+});
+</script>
 </body>
 
 </html>
